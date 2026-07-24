@@ -175,6 +175,7 @@ func TestFindChartInAuthAndTLSAndPassRepoURL(t *testing.T) {
 	// versions of Darwin do not. As there are people developing Helm using both old and new versions of Darwin we test
 	// for both messages.
 	if runtime.GOOS == "darwin" {
+		require.Error(t, err)
 		assert.True(t, strings.Contains(err.Error(), "x509: “Acme Co” certificate is not trusted") || strings.Contains(err.Error(), "x509: certificate signed by unknown authority"), "Expected TLS error for function  FindChartInAuthAndTLSAndPassRepoURL not found, but got a different error (%v)", err)
 	} else {
 		assert.ErrorContainsf(t, err, "x509: certificate signed by unknown authority", "Expected TLS error for function  FindChartInAuthAndTLSAndPassRepoURL not found, but got a different error")
