@@ -45,7 +45,11 @@ func TestLabelsMatch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			require.False(t, !tt.set1.match(tt.set2) && tt.expect)
+			if tt.expect {
+				require.True(t, tt.set1.match(tt.set2))
+			} else {
+				require.False(t, tt.set1.match(tt.set2))
+			}
 		})
 	}
 }
