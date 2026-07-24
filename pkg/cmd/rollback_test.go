@@ -160,5 +160,5 @@ func TestRollbackWithLabels(t *testing.T) {
 
 	updatedRel, err := releaserToV1Release(updatedReli)
 	require.NoError(t, err)
-assert.Equalf(t, labels1, updatedRel.Labels, "Expected {%v}, got {%v}", labels1, updatedRel.Labels)
+	assert.Equalf(t, labels1, updatedRel.Labels, "Expected {%v}, got {%v}", labels1, updatedRel.Labels)
 }
