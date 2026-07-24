@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/cli-runtime/pkg/resource"
@@ -41,11 +42,11 @@ func TestResourceList(t *testing.T) {
 	assert.Equal(t, "pod", r1.Get(info("bar")).Mapping.Resource.Resource, "expected get pod")
 
 	diff := r1.Difference(r2)
-	assert.Len(t, diff, 1, "expected 1 result")
+	require.Len(t, diff, 1, "expected 1 result")
 	assert.Contains(t, diff, info("foo"), "expected diff to return foo")
 
 	inter := r1.Intersect(r2)
-	assert.Len(t, inter, 1, "expected 1 result")
+	require.Len(t, inter, 1, "expected 1 result")
 	assert.Contains(t, inter, info("bar"), "expected intersect to return bar")
 }
 
